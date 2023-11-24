@@ -1,0 +1,24 @@
+:root{
+    --color-dark: #0d1117;
+    --color-gray: #161b22;
+    --border-gray: 0.5px solid #2a323e;
+    --border-gray-1: 1px solid #2a323e;
+    --color-light-gray: #89989f;
+    --color-green:#5aa83c;
+    --color-blue: #3a3aff;
+    --color-white: white;
+    --color-darkblue: #101d3d;
+    --family-heiti: STHeiti, sans-serif;
+    --family-mukta: Mukta, sans-serif;
+    --family-kaiti: STKaiti, sans-serif;
+    --box-shadow: 0 2px 2px rgb(0 0 0 / 24%), 0 0 1px rgb(0 0 0 / 32%);
+    --color-gray-2: #18242c;
+    --color-gray-3: #27343e;
+    --color-blue-light: #007ec9;
+}
+input:focus {
+    outline: none;
+}
+select:focus{
+    outline: none;
+}
