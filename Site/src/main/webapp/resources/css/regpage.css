@@ -1,0 +1,123 @@
+html{
+    background-color: var(--color-dark);
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    width: 100%;
+    height: 60px;
+    background-color: var(--color-gray);
+    box-shadow: var(--box-shadow);
+}
+.navbar-container{
+    margin-left: 150px;
+    display: flex;
+}
+.navbar-text{
+    padding-top: 15px;
+}
+.navbar-text-link{
+    color: var(--color-white);
+    font-family: var(--family-mukta);
+    font-size: 20px;
+    text-decoration: none;
+}
+.logo-img{
+    width: 70px;
+    height: 70px;
+}
+.container{
+    margin: 50px auto 100px;
+    width: 300px;
+}
+.container-singIn{
+    text-align: center;
+    color: var(--color-white);
+    font-size: 25px;
+    font-family: var(--family-heiti);
+    margin-bottom: 20px;
+}
+.container-main{
+    width: 300px;
+    height: 430px;
+    border-radius: 10px;
+    background-color: var(--color-gray);
+    border: var(--border-gray);
+    box-shadow: var(--box-shadow);
+}
+.container-main-small{
+    padding-top: 20px;
+    margin: 0 auto 20px;
+    color:var(--color-white);
+    width: 250px;
+    height: 210px;
+}
+.login{
+    margin-bottom: 20px;
+}
+.main-item{
+    margin-bottom: 20px;
+}
+.main-item:last-child{
+    margin-bottom: 10px;
+}
+.input{
+    border: var(--border-gray);
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: var(--color-dark) ;
+    color: white;
+}
+.name{
+    font-size: 15px;
+    margin-bottom: 5px;
+    font-family: var(--family-heiti);
+}
+.container-message{
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+
+}
+.sing-up-btn{
+    text-align: center;
+}
+.btn-sing-up{
+    width: 255px;
+    height: 30px;
+    background-color: var(--color-green);
+    border-radius: 5px;
+    border: 0;
+}
+.container-additional{
+    margin-top: 210px;
+    text-align: center;
+    border-radius: 10px;
+    border: var(--border-gray);
+    width: 300px;
+    height: 60px;
+    margin-bottom: 10px;
+    box-shadow: var(--box-shadow);
+}
+.container-additional-small{
+    padding-top: 10px;
+    color: var(--color-white);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.container-link{
+    color: var(--color-blue);
+    text-decoration: none;
+    font-size: 14px;
+}
+.container-additional-contact{
+    color: var(--color-white);
+    font-size: 14px;
+}
+.remember{
+    font-size: 14px;
+    margin-bottom: 10px;
+}

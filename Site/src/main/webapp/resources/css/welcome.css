@@ -10,6 +10,29 @@ body{
     margin: 0;
     padding: 0;
 }
+.navbar{
+    width: 100%;
+    height: 60px;
+    background-color: var(--color-gray);
+    box-shadow: var(--box-shadow);
+}
+.navbar-container{
+    margin-left: 150px;
+    display: flex;
+}
+.navbar-text{
+    padding-top: 15px;
+}
+.navbar-text-link{
+    color: var(--color-white);
+    font-family: var(--family-mukta);
+    font-size: 20px;
+    text-decoration: none;
+}
+.navbar-logo-img{
+    width: 70px;
+    height: 70px;
+}
 .text-head{
     font-size: 60px;
     margin-bottom: 20px;
@@ -63,7 +86,7 @@ body{
     display: none;
 }
 .logo-img{
-    margin: 0 auto 30px;
+    margin: 0 auto 10px;
     background-image: url("../img/logo.png");
     background-size: 300px;
     width: 300px;
@@ -72,33 +95,275 @@ body{
     transition: opacity 1s ease;
 }
 .section-poster {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 750px;
     z-index: -1;
 }
-
 .container-poster {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
-
 .poster {
     width: 100vw;
     height: 100vh;
 }
-
 .poster-img {
     background-image: url("../img/poster-main.png");
     background-size: cover;
     width: 100%;
     height: 750px;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
 .section-main {
     position: relative;
     z-index: 1;
+    height: 700px;
+}
+
+.main_section-about{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.about_text-container{
+    width: 50%;
+    height: 400px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 2s linear;
+}
+.about_text-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.about_image-container{
+    width: 50%;
+    height: 400px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 2s linear;
+}
+.about_image-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.about-image{
+    width: 95%;
+    height: 360px;
+    margin: 20px auto;
+    background-image: url("../img/posters/poster_four.png");
+    background-size: cover;
+    border-radius: 10px;
+    border: var(--border-gray-1);
+}
+.about-text{
+    font-family: var(--family-heiti);
+    margin: 150px auto;
+    width: 600px;
+    font-size: 60px;
+    color: white;
+}
+/*----------------------------------------------*/
+.main_section-slogan{
+    background-color: var(--color-gray);
+    width: 100%;
+    height: 700px;
+    display: flex;
+}
+.slogan_container-one{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 2s linear;
+    width: 50%;
+}
+.slogan_container-one.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.container_one-image-one{
+    width: 90%;
+    height: 400px;
+}
+.image-one{
+    width: 100%;
+    height: 700px;
+    margin: 50px 20px 20px 20px;
+    border: var(--border-gray-1);
+    background-image: url("../img/posters/poster_one.png");
+    background-size: cover;
+    border-radius: 10px;
+}
+.slogan_container-two{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 2s linear;
+    width: 50%;
+}
+.slogan_container-two.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+.container_two-text-one{
+    font-family: var(--family-heiti);
+    text-align: center;
+    width: 100%;
+    font-size: 50px;
+    color: white;
+    margin: 200px auto 10px;
+}
+.container_two-text-two{
+    font-family: var(--family-heiti);
+    text-align: center;
+    width: 100%;
+    font-size: 70px;
+    color: white;
+    margin: 0 auto 10px;
+}
+.container_two-text-three{
+    font-family: var(--family-heiti);
+    text-align: center;
+    width: 100%;
+    font-size: 90px;
+    color: white;
+    margin: 0 auto 10px;
+}
+/*-------------------------*/
+.main_section-declare{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.declare_text-container{
+    width: 50%;
+    height: 400px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 2s linear;
+}
+.declare_text-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.declare_image-container{
+    width: 50%;
+    height: 400px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 2s linear;
+}
+.declare_image-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.declare-image{
+    position: absolute;
+    bottom: 20px;
+    width: 95%;
+    height: 500px;
+    margin: 20px auto;
+    background-image: url("../img/posters/poster_two.png");
+    background-size: cover;
+    border-radius: 10px;
+    border: var(--border-gray-1);
+}
+.declare-text{
+    font-family: var(--family-heiti);
+    text-align: center;
+    margin: 150px auto;
+    width: 700px;
+    font-size: 60px;
+    color: white;
+}
+/*--------------*/
+.join-text {
+    position: relative;
+    z-index: 1;
+}
+.main_section-background {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    text-align: center;
+}
+
+.background-join {
+    opacity: 0;
+    transition: opacity 1s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    background-image: url("../img/posters/poster_five.png");
+    background-size: cover;
+    z-index: 0;
+}
+
+.join-text{
+    position: relative;
+    z-index: 1;
+    padding-top: 150px;
+    color: white;
+    font-size: 100px;
+    font-family: var(--family-heiti);
+    margin-bottom: 25px;
+}
+.link-join{
+    text-decoration: none;
+}
+.join-btn{
+    display: none;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    color: black;
+    font-size: 15px;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    width: 200px;
+    height: 35px;
+    border: 0;
+}
+.footer{
+    font-size: 13px;
+    display: flex;
+    width: 100%;
+    background-color: var(--color-gray);
+    color: var(--color-light-gray);
+}
+
+.footer_name{
+    height: 1em;
+    margin: 30px 200px;
+}
+.footer_link{
+    margin: 30px 0;
+}
+.footer_item{
+    margin: 30px 200px 30px 0;
+    height: 1em;
+}
+.footer_item-link{
+    text-decoration: none;
+    color: var(--color-light-gray);
+}
+.footer_item:hover{
+    color: white;
+}
+.footer_select-language{
+    background-color: var(--color-gray);
+    border: 0;
+    outline: none;
+    color: var(--color-light-gray);
+}
+.footer_select-language:hover{
+    color: white;
 }

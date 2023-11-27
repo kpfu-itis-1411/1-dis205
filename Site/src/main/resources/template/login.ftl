@@ -31,13 +31,13 @@
                         <div class="login">
                             <div class="login-text name">Username</div>
                             <div class="login-input">
-                                <input id="login_id" type="text" name="username" class="input">
+                                <input id="login_id" type="text" name="username" class="input" required >
                             </div>
                         </div>
                         <div class="password">
                             <div class="password-text name">Password</div>
                             <div class="password-input">
-                                <input id="password_id" type="password" name="password" class="input">
+                                <input id="password_id" type="password" name="password" class="input" required >
                             </div>
                         </div>
                         <div class="remember name">

@@ -37,9 +37,9 @@
                     </div>
                 </div>
                 <div class="info">
-                    <div class="name">${name}</div>
-                    <div class="username">@${username}</div>
-                    <div class="status">${status}</div>
+                    <div class="name">${client.name}</div>
+                    <div class="username">@${client.userName}</div>
+                    <div class="status">${client.status}</div>
                 </div>
                 <div class="activity">
                     <div class="container-item">
@@ -54,7 +54,9 @@
                 </div>
                 <div class="link">
                     <div class="container-link">
-                        <a class="link-profile" href="">My Profile</a>
+                        <form action="">
+                            <a class="link-profile" href="/Site_war/my_profile">My Profile</a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -69,7 +71,6 @@
                                 <div class="friend">
                                     <div class="friend-avatar" style='background-image: url("data:image/jpeg;base64,${friend.friend_id.avatar}"); background-size: cover'>
                                     </div>
-
                                     <div class="friend-info">
                                         <div class="friend-name">${friend.friend_id.name}</div>
                                         <div class="friend-username">@${friend.friend_id.userName}</div>
@@ -95,14 +96,27 @@
                             <textarea class="message-input" name="message" placeholder="What's new?"></textarea>
                         </div>
                         <div class="message-submit">
-                            <button type="submit" class="submit-btn">Send</button>
+                            <input type="submit" class="submit-btn" value="Send">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="main-tape-list">
                 <#list posts as post>
-                    <div>${post.message}</div>
+                    <div class="post-container">
+                        <div class="post-avatar" style='background-image: url("data:image/jpeg;base64,${post.client.avatar}"); background-size: cover'></div>
+                        <div class="post-content">
+                            <div class="post-content-user">
+                                <div class="post-name">${post.client.name}</div>
+                                <div class="post-username">@${post.client.userName}</div>
+                            </div>
+                            <div class="post-time">
+                                <div class="date">${post.date}</div>
+                                <div class="time">${post.time?string("HH:mm")}</div>
+                            </div>
+                            <div class="post-message">${post.message}</div>
+                        </div>
+                    </div>
                 </#list>
             </div>
         </div>
@@ -110,12 +124,3 @@
     </div>
 </body>
 </html>
-<#--<div class="info">-->
-<#--    <div class="name">${name}</div>-->
-<#--    <div class="username">@${username}</div>-->
-<#--    <div class="status">${status}</div>-->
-<#--</div>-->
-
-<#--<div class="name">Kasimov Danil</div>-->
-<#--<div class="username">@kasimov_danil</div>-->
-<#--<div class="status">Hello world!</div>-->
