@@ -1,16 +1,16 @@
 package application.service;
 
 import application.model.Client;
-import application.repository.ImageRepository;
+import application.repository.AvatarRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ImageService {
-    private ImageRepository repository;
+public class AvatarService {
+    private AvatarRepository repository;
 
-    public ImageService() {
-        repository = new ImageRepository();
+    public AvatarService() {
+        repository = new AvatarRepository();
     }
 
 

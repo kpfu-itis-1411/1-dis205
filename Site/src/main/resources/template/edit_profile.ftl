@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href='/Site_war/resources/css/global.css'>
     <link rel="stylesheet" href='/Site_war/resources/css/edit_profile.css'>
+    <script src='/Site_war/resources/js/validate_form.js'></script>
     <title>Document</title>
 </head>
 <body>
@@ -20,19 +21,63 @@
         <div class="navbar-text">
             <a href="/Site_war/welcome" class="navbar-text-link">THE WORD OUT</a>
         </div>
+        <div class="container-menu">
+            <div class="menu">
+                <div class="dropdown " onclick="toggleDropdown()">
+                    <button class="dropbtn" id="dropdownBtn">Profile</button>
+                    <div class="dropdown-content" id="dropdown-list">
+                        <a href="/Site_war/index">Home</a>
+                        <a href="/Site_war/login">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <form method="post" action="/Site_war/edit" enctype="multipart/form-data">
-        <div class="username">@${client.userName}</div>
-        <input type="text" name="client_name" value="${client.name}">
-        <input type="text" name="client_password" value="${client.password}">
-        <input type="text" name="client_phoneNumber" value="${client.phoneNumber}">
-        <input type="text" name="client_status" value="${client.status}">
-        <input type="text" name="client_birthday" value="${client.birthday}">
-        <input type="text" name="client_about" value="${client.about}">
-        <div class="avatar" style='background-image: url("data:image/jpeg;base64,${client.avatar}"); background-size: cover'></div>
-        <input type="file" name="avatar" class="avatar">
-        <input type="submit" value="Сохранить">
-    </form>
+</div>
+<div class="main">
+    <div class="section_profile">
+        <div class="information-container">
+            <form method="post" action="/Site_war/edit" enctype="multipart/form-data">
+                <div class="profile-header"></div>
+                <div class="avatar" style='background-image: url("data:image/jpeg;base64,${client.avatar}"); background-size: cover'></div>
+                <div class="name-username-edit-container">
+                    <div class="name-username-container">
+                        <input type="text" name="client_name" class="edit_name"  required value="${client.name}">
+                        <div class="username">@${client.userName}</div>
+                    </div>
+                    <input class="edit_avatar" type="file" name="avatar" >
+                    <input class="edit_save" type="submit" value="Save changes">
+                </div>
+                <div class="information">
+                    <div class="information-left">
+                        <fieldset class="fieldset-status">
+                            <legend>STATUS</legend>
+                            <input type="text" name="client_status" class="edit_status" value="${client.status}">
+                        </fieldset>
+                        <fieldset class="fieldset-information">
+                            <legend>INFORMATION</legend>
+                            <div class="information-item-container">
+                                <label class="label_edit" for="client_birthday">Birthday:</label>
+                                <input type="text" name="client_birthday" class="edit_info" value="${client.birthday}">
+                                <label class="label_edit" for="client_phoneNumber">Phone number:</label>
+                                <input type="text" name="client_phoneNumber" class="edit_info" value="${client.phoneNumber}">
+                                <label class="label_edit" for="client_phoneNumber">Password</label>
+                                <input type="text" name="client_password" required class="edit_info"  value="${client.password}"  oninput="validatePassword(this)">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="information-right">
+                        <fieldset class="fieldset-about">
+                            <legend>ABOUT ME</legend>
+                            <div class="container-about">
+                                <textarea class="edit_about" type="text" name="client_about" >${client.about}</textarea>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>

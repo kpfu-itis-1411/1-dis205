@@ -25,21 +25,13 @@ public class IndexServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession(false);
-        String name = (String)session.getAttribute("client_name");
-        String username = (String)session.getAttribute("client_username");
         Long clientId = (Long)session.getAttribute("client_id");
         Client client =  clientService.findById(clientId);
-//        request.setAttribute("name", name);
-//        request.setAttribute("username", username);
-//        request.setAttribute("status",  clientService.findById(clientId).getStatus() );
         request.setAttribute("client", client);
         List<Subscriptions> subscriptionsList = subscriptionsService.findById(clientId);
         request.setAttribute("friends", subscriptionsList.subList(0, Math.min(subscriptionsList.size(), 3)));
-
-        List<Post> posts = postService.findAll();
-        Collections.reverse(posts);
-        request.setAttribute("posts", posts);
-
+        request.setAttribute("countfollow", subscriptionsService.countFollow(client));
+        request.setAttribute("likes", postService.countLikes(client));
         request.getRequestDispatcher("main.ftl").forward(request, response);
     }
 }

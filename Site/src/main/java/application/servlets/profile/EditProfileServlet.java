@@ -1,8 +1,8 @@
-package application.servlets;
+package application.servlets.profile;
 
 import application.model.Client;
 import application.service.ClientService;
-import application.service.ImageService;
+import application.service.AvatarService;
 import application.service.InformationService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class EditProfileServlet extends HttpServlet {
     private ClientService clientService = new ClientService();
     private InformationService informationService = new InformationService();
-    private ImageService imageService = new ImageService();
+    private AvatarService imageService = new AvatarService();
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -37,14 +37,20 @@ public class EditProfileServlet extends HttpServlet {
         client.setPassword(password);
         client.setPhoneNumber(phone);
 
-        try {
-            imageService.updateAvatarImage(client, uploadFile(request));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        Part filePart = request.getPart("avatar");
+        if (filePart.getSize() > 0) {
+            try {
+                imageService.updateAvatarImage(client, uploadFile(filePart));
+            } catch(SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         informationService.update(client, status, birthday, about);
         clientService.update(client);
-        request.getRequestDispatcher("edit_profile.ftl").forward(request, response);
+        session.setAttribute("client_id", client.getId());
+        session.setAttribute("client_name", client.getName());
+        session.setAttribute("client_username", client.getUserName());
+        response.sendRedirect("/Site_war/my_profile");
     }
 
     @Override
@@ -56,8 +62,7 @@ public class EditProfileServlet extends HttpServlet {
         request.getRequestDispatcher("edit_profile.ftl").forward(request, response);
     }
 
-    private byte[] uploadFile(HttpServletRequest request) throws IOException, ServletException {
-        Part filePart = request.getPart("avatar");
+    private byte[] uploadFile(Part filePart) throws IOException{
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         if (fileName.endsWith(".jpg")) {
             try (InputStream input = filePart.getInputStream()) {

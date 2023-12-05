@@ -14,15 +14,19 @@ public class Post {
     private Date date;
     private Time time;
     private String message;
+    private int likes;
+    private int dislikes;
 
     public Post() {
     }
 
-    public Post(Long id, Client client_id, Date date, Time time, String message) {
+    public Post(Long id, Client client_id, Date date, Time time, String message, int likes, int dislikes) {
         this.id = id;
         this.client = client_id;
         this.date = date;
         this.time = time;
         this.message = message;
+        this.likes = likes;
+        this.dislikes = dislikes;
     }
 }

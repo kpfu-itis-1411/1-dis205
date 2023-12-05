@@ -1,14 +1,17 @@
 package application.repository;
 
 import application.model.Client;
-import application.service.ImageService;
+import application.model.Information;
+import application.service.AvatarService;
 import application.service.InformationService;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class ClientRepository {
+
 
     public List<Client> findAll() {
         try {
@@ -31,6 +34,11 @@ public class ClientRepository {
                         resultSet.getString("phone_number")
                 ));
             }
+            connection.close();
+            resultSet.close();
+            statement.close();
+            DBConnection.destroyConnection(connection);
+
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -60,6 +68,11 @@ public class ClientRepository {
                         resultSet.getString("phone_number")
                 );
             }
+            connection.close();
+            resultSet.close();
+            statement.close();
+            DBConnection.destroyConnection(connection);
+
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -92,6 +105,8 @@ public class ClientRepository {
 
             resultSet.close();
             statement.close();
+            connection.close();
+            DBConnection.destroyConnection(connection);
 
             return result;
         } catch (SQLException e) {
@@ -119,11 +134,13 @@ public class ClientRepository {
                 client.setId(resultSet.getLong("id"));
             }
             InformationService informationService = new InformationService();
-            ImageService imageService = new ImageService();
+            AvatarService imageService = new AvatarService();
             informationService.save(client, "no status", "not specified", "not specified");
             imageService.saveAvatarImage(client, imageService.getImageById(1L));
             resultSet.close();
             statement.close();
+            connection.close();
+            DBConnection.destroyConnection(connection);
 
             return client;
         } catch (SQLException e) {
@@ -143,16 +160,46 @@ public class ClientRepository {
             statement.setString(3, client.getPhoneNumber());
             statement.setLong(4, client.getId());
 
-            int rowsUpdated = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (rowsUpdated == 0) {
-                throw new SQLException("Failed to update client");
-            }
-
+            connection.close();
             statement.close();
+            DBConnection.destroyConnection(connection);
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void setInfo(Client client) throws SQLException {
+        client.setAvatar(getClientAvatar(client));
+        client.setBirthday(getClientBirthday(client));
+        client.setStatus(getClientStatus(client));
+        client.setAbout(getClientAbout(client));
+    }
+    private static String getClientAvatar(Client client) throws SQLException {
+        AvatarService imageService = new AvatarService();
+        byte[] imageData;
+        imageData = imageService.getImage(client);
+        if (imageData == null) {
+            imageData = imageService.getImageById(1L);
+        }
+        return Base64.getEncoder().encodeToString(imageData);
+    }
+    private static String getClientStatus(Client client) {
+        InformationService service = new InformationService();
+        Information information = service.findByClient(client);
+        return information != null ? information.getStatus() : "";
+    }
+    private static String getClientBirthday(Client client) {
+        InformationService service = new InformationService();
+        Information information = service.findByClient(client);
+        return information != null ? information.getBirthday() : "";
+    }
+    private static String getClientAbout(Client client) {
+        InformationService service = new InformationService();
+        Information information = service.findByClient(client);
+        return information != null ? information.getAbout_me() : "";
     }
 }

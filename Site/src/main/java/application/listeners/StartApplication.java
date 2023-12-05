@@ -1,12 +1,11 @@
 package application.listeners;
 
-import application.service.ImageService;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 import application.repository.DBConnection;
 
-import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebListener
@@ -19,9 +18,9 @@ public class StartApplication implements ServletContextListener {
 //        } catch (SQLException | IOException e) {
 //            throw new RuntimeException(e);
 //        }
-        System.out.println("start app ");
+//        System.out.println("start app ");
         try {
-            DBConnection.getConnection();
+          DBConnection.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -29,6 +28,6 @@ public class StartApplication implements ServletContextListener {
 
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("stop app ");
-        DBConnection.destroyConnection();
+        DBConnection.destroyAllConnection();
     }
 }

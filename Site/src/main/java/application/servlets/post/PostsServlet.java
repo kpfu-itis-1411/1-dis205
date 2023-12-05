@@ -1,11 +1,11 @@
-package application.servlets;
+package application.servlets.post;
 
+import application.model.Client;
 import application.model.Post;
-import application.service.ClientService;
 import application.service.PostService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.ServletException;
+import com.google.gson.Gson;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,20 +15,23 @@ import jakarta.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.Time;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet("/post")
+@WebServlet("/posta")
 public class PostsServlet extends HttpServlet {
     private PostService service = new PostService();
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        sendResponse(response);
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        Client client = (Client)session.getAttribute("client");
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();
         String line;
@@ -39,19 +42,24 @@ public class PostsServlet extends HttpServlet {
         JsonNode jsonNode = mapper.readTree(sb.toString());
         String message = jsonNode.get("message").asText();
 
-        HttpSession session = request.getSession(false);
-        Long clientId = (Long)session.getAttribute("client_id");
-
         Post post = new Post();
-        ClientService clientService = new ClientService();
-        post.setClient(clientService.findById(clientId));
+        post.setClient(client);
         post.setDate(new Date());
         post.setTime(new Time(System.currentTimeMillis()));
         post.setMessage(message);
+        post.setLikes(0);
+        post.setDislikes(0);
         service.save(post);
-
-
-
+        sendResponse(response);
+    }
+    private void sendResponse(HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        Gson gson = new Gson();
+        List<Post> list = service.findAll();
+        Collections.reverse(list);
+        String json = gson.toJson(list);
+        response.getWriter().write(json);
     }
 }
 

@@ -3,6 +3,7 @@ package application.service;
 import application.model.Client;
 import application.repository.ClientRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ClientService {
@@ -17,7 +18,7 @@ public class ClientService {
         return repository.save(client);
     }
     public void update(Client client) {
-        repository.update(client);
+         repository.update(client);
     }
 
     public List<Client> findAll() {
@@ -30,5 +31,8 @@ public class ClientService {
 
     public Client findByUserName(String userName) {
         return repository.findByUserName(userName);
+    }
+    public static void setInfo(Client client) throws SQLException {
+        ClientRepository.setInfo(client);
     }
 }

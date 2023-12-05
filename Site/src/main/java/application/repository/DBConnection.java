@@ -7,6 +7,8 @@ import java.util.Stack;
 
 public class DBConnection {
     private static final int MAX_CONNECTIONS = 5;
+    private static DBConnection instance;
+
     private static Stack<Connection> connections = new Stack<>();
 
     public DBConnection() throws SQLException {
@@ -23,11 +25,8 @@ public class DBConnection {
         }
     }
 
-    public static void releaseConnection(Connection connection) {
-        if (connection != null) {
-            connections.push(connection);
-        }
-    }
+
+
 
     private static Connection createNewConnection() throws SQLException {
         try {
@@ -38,7 +37,16 @@ public class DBConnection {
 
         return DriverManager.getConnection("jdbc:postgresql://localhost:5432/data_base", "postgres", "root");
     }
-    public static void destroyConnection() {
+    public static void destroyConnection(Connection connection) {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void destroyAllConnection() {
         try {
             if (connections.pop() != null && !connections.pop().isClosed()) {
                 connections.pop().close();

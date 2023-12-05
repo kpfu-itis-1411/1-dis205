@@ -33,7 +33,7 @@ public class AutentificationFilter implements Filter {
                     && session.getAttribute("client_id") != null) {
                 filterChain.doFilter(request, response);
             } else {
-                request.getRequestDispatcher("/index").forward(request, response);
+                request.getRequestDispatcher("/login").forward(request, response);
 
             }
         }

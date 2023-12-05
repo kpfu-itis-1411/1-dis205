@@ -1,6 +1,7 @@
 package application.service;
 
 
+import application.model.Client;
 import application.model.Subscriptions;
 import application.repository.SubscriptionsRepository;
 
@@ -21,5 +22,8 @@ public class SubscriptionsService {
     public List<Subscriptions> findById(Long id) {
         return repository.findById(id);
     }
-
+    public int countFollow(Client client){return repository.countFollow(client);}
+    public int countSubs(Client client){return repository.countSubs(client);}
+    public void followClientOnFriend(Subscriptions subscriptions){repository.followClientOnFriend(subscriptions);}
+    public boolean isFollowing(Long clientId, Long friendId) { return  repository.isFollowing(clientId, friendId);}
 }

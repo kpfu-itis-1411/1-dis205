@@ -82,7 +82,7 @@ public class InformationRepository {
 
             PreparedStatement statement = connection.prepareStatement(
                     "insert into client_information ( client_id, status, birthdate, about_me) " +
-                            "values ( ? , ? , ? , ? ) returning id "
+                            "values ( ? , ? , ? , ? ) "
             );
 
             statement.setLong(1, client.getId());

@@ -4,15 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter@Setter
-public class Image {
+public class Avatar {
     private Long id;
     private Client client_id;
     private Byte data;
 
-    public Image() {
+    public Avatar() {
     }
 
-    public Image(Long id, Client client_id, Byte data) {
+    public Avatar(Long id, Client client_id, Byte data) {
         this.id = id;
         this.client_id = client_id;
         this.data = data;

@@ -36,6 +36,7 @@ public class RegistrationServlet extends HttpServlet {
             session.setAttribute("client_name", client.getName());
             session.setAttribute("client_id", client.getId());
             session.setAttribute("client_username", client.getUserName());
+            session.setAttribute("client", client);
             response.sendRedirect("/Site_war/index");
         } else {
             request.setAttribute("message", "Пользователь с таким username уже существует");
