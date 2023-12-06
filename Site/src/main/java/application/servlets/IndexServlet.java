@@ -29,9 +29,11 @@ public class IndexServlet extends HttpServlet {
         Client client =  clientService.findById(clientId);
         request.setAttribute("client", client);
         List<Subscriptions> subscriptionsList = subscriptionsService.findById(clientId);
-        request.setAttribute("friends", subscriptionsList.subList(0, Math.min(subscriptionsList.size(), 3)));
+        request.setAttribute("friends", subscriptionsList);
         request.setAttribute("countfollow", subscriptionsService.countFollow(client));
         request.setAttribute("likes", postService.countLikes(client));
+        request.setAttribute("posts", postService.findMostPopularPost());
+        request.setAttribute("followers", subscriptionsService.findFollowersById(clientId));
         request.getRequestDispatcher("main.ftl").forward(request, response);
     }
 }

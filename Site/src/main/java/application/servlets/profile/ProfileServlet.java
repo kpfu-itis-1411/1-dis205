@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,15 +24,29 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Long friend = Long.valueOf(request.getParameter("friendid"));
-        Client client = clientService.findById(friend);
+        Long friend = null;
+        if (request.getParameter("friendid") != null) {
+            friend = Long.valueOf(request.getParameter("friendid"));
+        }
+        String username = null;
+        if (request.getParameter("send-user-search") != null) {
+            username = request.getParameter("send-user-search");
+        }
+        if (username != null){
+            if (clientService.findByUserName(username) == null){
+                response.sendRedirect("/Site_war/index");
+                return;
+            }
+        }
+        Client client = username != null ? clientService.findByUserName(username) : clientService.findById(friend);
+
         HttpSession session = request.getSession(false);
         Client mainClient = (Client) session.getAttribute("client");
         List<Post> posts = postService.findByClient(client);
         request.setAttribute("posts", posts);
         request.setAttribute("client", client);
         if (!mainClient.getId().equals(client.getId())) {
-            if (subscriptionsService.isFollowing(mainClient.getId(), friend)) {
+            if (subscriptionsService.isFollowing(mainClient.getId(), client.getId())) {
                 request.setAttribute("edit", "Followed");
             } else {
                 request.setAttribute("edit", "Follow");

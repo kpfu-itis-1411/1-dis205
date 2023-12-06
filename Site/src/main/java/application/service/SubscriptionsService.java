@@ -26,4 +26,5 @@ public class SubscriptionsService {
     public int countSubs(Client client){return repository.countSubs(client);}
     public void followClientOnFriend(Subscriptions subscriptions){repository.followClientOnFriend(subscriptions);}
     public boolean isFollowing(Long clientId, Long friendId) { return  repository.isFollowing(clientId, friendId);}
+    public List<Subscriptions> findFollowersById(Long id) { return repository.findFollowersById(id);}
 }

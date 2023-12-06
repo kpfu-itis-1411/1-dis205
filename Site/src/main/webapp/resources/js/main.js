@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-   start()
+    start()
+    sendSearch()
 })
 function start() {
     fetch('/Site_war/session', {
@@ -132,8 +133,7 @@ function avatarContainer(post){
 function contentContainer(post){
     const div = document.createElement("div")
     div.classList.add("post-content")
-    div.appendChild(usernameUserViewContainer(post))
-    div.appendChild(timeDateContainer(post))
+    div.appendChild(usernameUserDateViewContainer(post))
     div.appendChild(messageContainer(post))
     div.appendChild(likeDislike(post))
     return div
@@ -145,11 +145,17 @@ function likeDislike(post){
     div.appendChild(dislikeButton(post))
     return div;
 }
-function usernameUserViewContainer(post){
+function usernameUserDateViewContainer(post){
     const div = document.createElement("div")
     div.classList.add("usernameUserView")
-    div.appendChild(usernameUserContainer(post))
+    div.appendChild(usernameUserDateContainer(post))
     div.appendChild(viewProfile(post))
+    return div
+}
+function usernameUserDateContainer(post){
+    const div = document.createElement("div")
+    div.appendChild(usernameUserContainer(post))
+    div.appendChild(timeDateContainer(post))
     return div
 }
 function usernameUserContainer(post){
@@ -219,4 +225,13 @@ function viewProfile(post){
     form.appendChild(inputHidden)
     form.appendChild(btnSend)
     return form
+}
+
+
+function sendSearch(){
+    const input1 = document.getElementById("search-user")
+    const input2 = document.getElementById("search-user-hidden")
+    input1.addEventListener("change", () => {
+        input2.value = input1.value
+    })
 }

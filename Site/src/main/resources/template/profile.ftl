@@ -44,7 +44,7 @@
                         <div class="username">@${client.userName}</div>
                     </div>
                     <div class="edit-profile-container">
-                        <form method="get" action="/Site_war/${editlink}">
+                        <form class="form-edit" method="get" action="/Site_war/${editlink}">
                             <button type="submit" class="edit-profile-btn">${edit}</button>
                             <input type="hidden" id="profile-edit-hidden" name="profile-edit-hidden" value="${client.userName}">
                         </form>

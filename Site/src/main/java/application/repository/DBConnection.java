@@ -6,53 +6,52 @@ import java.sql.SQLException;
 import java.util.Stack;
 
 public class DBConnection {
-    private static final int MAX_CONNECTIONS = 5;
+    private Stack<Connection> connectionPool = new Stack<>();
     private static DBConnection instance;
 
-    private static Stack<Connection> connections = new Stack<>();
-
-    public DBConnection() throws SQLException {
-        for (int i = 0; i < MAX_CONNECTIONS; i++) {
-            connections.push(createNewConnection());
-        }
-    }
-
-    public static Connection getConnection() throws SQLException {
-        if (connections.isEmpty()) {
-            return createNewConnection();
-        } else {
-            return connections.pop();
-        }
-    }
-
-
-
-
-    private static Connection createNewConnection() throws SQLException {
+    private DBConnection() {
         try {
             Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
+            for (int i = 0; i < 5; i++) {
+                Connection connection = DriverManager.getConnection(
+                        "jdbc:postgresql://localhost:5432/data_base", "postgres", "root");
+                connectionPool.push(connection);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/data_base", "postgres", "root");
+    public static synchronized DBConnection getInstance() {
+        if (instance == null) {
+            instance = new DBConnection();
+        }
+        return instance;
     }
-    public static void destroyConnection(Connection connection) {
-        try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+
+    public synchronized Connection getConnection() throws SQLException {
+        if (!connectionPool.isEmpty()) {
+            return connectionPool.pop();
+        } else {
+            return DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/data_base", "postgres", "root");
         }
     }
-    public static void destroyAllConnection() {
-        try {
-            if (connections.pop() != null && !connections.pop().isClosed()) {
-                connections.pop().close();
+
+    public synchronized void releaseConnection(Connection connection) {
+        connectionPool.push(connection);
+    }
+
+    public synchronized void destroyConnection() {
+        while (!connectionPool.isEmpty()) {
+            try {
+                Connection connection = connectionPool.pop();
+                if (connection != null && !connection.isClosed()) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
 
     }

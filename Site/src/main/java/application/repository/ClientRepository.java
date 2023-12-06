@@ -15,7 +15,7 @@ public class ClientRepository {
 
     public List<Client> findAll() {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id,name, username,password, phone_number from client"
@@ -34,11 +34,11 @@ public class ClientRepository {
                         resultSet.getString("phone_number")
                 ));
             }
-            connection.close();
+
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
 
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -47,7 +47,7 @@ public class ClientRepository {
 
     public Client findById(Long id) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id,name, username,password, phone_number from client where id = ? "
@@ -68,11 +68,10 @@ public class ClientRepository {
                         resultSet.getString("phone_number")
                 );
             }
-            connection.close();
+
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
-
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,7 +80,7 @@ public class ClientRepository {
 
     public Client findByUserName(String userName) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id,name, username,password, phone_number from client where username = ? "
@@ -105,9 +104,8 @@ public class ClientRepository {
 
             resultSet.close();
             statement.close();
-            connection.close();
-            DBConnection.destroyConnection(connection);
 
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -116,7 +114,7 @@ public class ClientRepository {
 
     public Client save(Client client) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "insert into client (name,username,password,phone_number) " +
@@ -139,9 +137,7 @@ public class ClientRepository {
             imageService.saveAvatarImage(client, imageService.getImageById(1L));
             resultSet.close();
             statement.close();
-            connection.close();
-            DBConnection.destroyConnection(connection);
-
+            DBConnection.getInstance().releaseConnection(connection);
             return client;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -149,7 +145,7 @@ public class ClientRepository {
     }
     public void update(Client client) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "update client set name = ?, password = ?, phone_number = ? where id = ?"
@@ -162,11 +158,10 @@ public class ClientRepository {
 
             statement.executeUpdate();
 
-            connection.close();
+
             statement.close();
-            DBConnection.destroyConnection(connection);
 
-
+            DBConnection.getInstance().releaseConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

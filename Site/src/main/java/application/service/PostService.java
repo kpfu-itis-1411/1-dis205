@@ -23,4 +23,5 @@ public class PostService {
     public int countLikes(Client client){ return repository.countLikes(client);}
     public Long findLastPostId(){ return repository.findLastPostId();}
     public List<Post> getAfterPostId(Long postId) { return repository.getAfterPostId(postId);}
+    public List<Post> findMostPopularPost() { return repository.findMostPopularPost();}
 }

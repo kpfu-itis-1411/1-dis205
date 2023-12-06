@@ -16,7 +16,7 @@ public class PostRepository {
 
     public List<Post> findAll() {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id, client_id, time, message, likes, dislikes from posts order by id asc"
@@ -39,7 +39,7 @@ public class PostRepository {
             }
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -48,7 +48,7 @@ public class PostRepository {
 
     public List<Post> findByClient(Client client) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id, client_id, time,likes,dislikes, message from posts where client_id = ?"
@@ -72,7 +72,7 @@ public class PostRepository {
             }
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,7 +81,7 @@ public class PostRepository {
 
     public Post findById(Long id) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id, client_id,likes, dislikes, time, message from posts where id = ?"
@@ -105,7 +105,7 @@ public class PostRepository {
             }
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -114,7 +114,7 @@ public class PostRepository {
 
     public Post save(Post post) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "insert into posts (client_id,time, message,likes,dislikes) " +
@@ -135,7 +135,7 @@ public class PostRepository {
 
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
             return post;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -144,7 +144,7 @@ public class PostRepository {
 
     public void updateActivity(Long id, int likes, int dislikes) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "update posts set likes = ?, dislikes = ? where id = ?"
@@ -156,7 +156,7 @@ public class PostRepository {
 
             statement.executeUpdate();
             statement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -164,7 +164,7 @@ public class PostRepository {
 
     public int countLikes(Client client) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT SUM(likes) as count FROM posts WHERE client_id = ?"
@@ -181,8 +181,7 @@ public class PostRepository {
 
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
-
+            DBConnection.getInstance().releaseConnection(connection);
             return friendCount;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -191,7 +190,7 @@ public class PostRepository {
 
     public Long findLastPostId() {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id from posts order by id desc limit 1"
@@ -207,8 +206,7 @@ public class PostRepository {
 
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
-
+            DBConnection.getInstance().releaseConnection(connection);
             return lastPostId;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -217,7 +215,7 @@ public class PostRepository {
 
     public List<Post> getAfterPostId(Long postId) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id, client_id, time, message, likes, dislikes from posts where id >= ?"
@@ -241,11 +239,42 @@ public class PostRepository {
             }
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
 
+        }
+    }
+    public List<Post> findMostPopularPost() {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "select id, client_id, time, message, likes, dislikes from posts order by likes desc limit 3"
+            );
+
+            ResultSet resultSet = statement.executeQuery();
+
+            List<Post> result = new ArrayList<>();
+
+            while (resultSet.next()) {
+                result.add(new Post(
+                        resultSet.getLong("id"),
+                        clientService.findById(resultSet.getLong("client_id")),
+                        resultSet.getDate("time"),
+                        resultSet.getTime("time"),
+                        resultSet.getString("message"),
+                        resultSet.getInt("likes"),
+                        resultSet.getInt("dislikes")
+                ));
+            }
+            resultSet.close();
+            statement.close();
+            DBConnection.getInstance().releaseConnection(connection);
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

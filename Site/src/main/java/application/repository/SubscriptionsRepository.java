@@ -13,7 +13,7 @@ public class SubscriptionsRepository {
 
     public List<Subscriptions> findAll() {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select client_id, friend_id from subscriptions"
@@ -33,7 +33,7 @@ public class SubscriptionsRepository {
             }
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -42,7 +42,7 @@ public class SubscriptionsRepository {
 
     public List<Subscriptions> findById(Long id) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select id, client_id, friend_id from subscriptions where client_id = ? "
@@ -64,8 +64,7 @@ public class SubscriptionsRepository {
             }
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
-
+            DBConnection.getInstance().releaseConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -73,7 +72,7 @@ public class SubscriptionsRepository {
     }
     public int countFollow(Client client){
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT COUNT(friend_id) as friend_count from subscriptions where friend_id = ?"
@@ -90,8 +89,7 @@ public class SubscriptionsRepository {
 
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
-
+            DBConnection.getInstance().releaseConnection(connection);
             return friendCount;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -99,7 +97,7 @@ public class SubscriptionsRepository {
     }
     public int countSubs(Client client){
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT COUNT(client_id) as count from subscriptions where client_id = ?"
@@ -116,8 +114,7 @@ public class SubscriptionsRepository {
 
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
-
+            DBConnection.getInstance().releaseConnection(connection);
             return friendCount;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -125,7 +122,7 @@ public class SubscriptionsRepository {
     }
     public void followClientOnFriend(Subscriptions subscriptions) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement checkStatement = connection.prepareStatement(
                     "select * from subscriptions where client_id = ? and friend_id = ?"
@@ -146,14 +143,14 @@ public class SubscriptionsRepository {
 
             checkResultSet.close();
             checkStatement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
     public boolean isFollowing(Long clientId, Long friendId) {
         try {
-            Connection connection = DBConnection.getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
                     "select count(*) from subscriptions where client_id = ? and friend_id = ?"
@@ -169,11 +166,40 @@ public class SubscriptionsRepository {
             }
             resultSet.close();
             statement.close();
-            DBConnection.destroyConnection(connection);
+            DBConnection.getInstance().releaseConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return false;
     }
+    public List<Subscriptions> findFollowersById(Long id) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
 
+            PreparedStatement statement = connection.prepareStatement(
+                    "select id, client_id, friend_id from subscriptions where friend_id = ? "
+            );
+
+            statement.setLong(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            List<Subscriptions> result = new ArrayList<>();
+
+            while (resultSet.next()) {
+                result.add(new Subscriptions(
+                        resultSet.getLong("id"),
+                        clientService.findById(resultSet.getLong("client_id")),
+                        clientService.findById(resultSet.getLong("friend_id"))
+
+                ));
+            }
+            resultSet.close();
+            statement.close();
+            DBConnection.getInstance().releaseConnection(connection);
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

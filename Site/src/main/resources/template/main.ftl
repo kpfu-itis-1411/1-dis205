@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <div class="navbar">
+    <navbar class="navbar">
         <div class="section-navbar">
             <div class="navbar-container">
                 <div class="container-block">
@@ -39,8 +39,17 @@
 
             </div>
         </div>
-    </div>
-    <div class="main">
+        <div class="container-search">
+                <input class="container-search-input" type="text" id="search-user" placeholder="Search users">
+                <form method="post" action="/Site_war/my_profile">
+                    <input type="hidden" name="send-user-search" id="search-user-hidden">
+                    <button type="submit" class="search-btn">
+                        <img class="search-img" src="/Site_war/resources/img/search.png" alt="">
+                    </button>
+                </form>
+        </div>
+    </navbar>
+    <main class="main">
         <div class="section_main-profile">
             <div class="container-profile">
                 <div class="background-avatar">
@@ -98,11 +107,6 @@
                             </#list>
                     </div>
                 </div>
-                <div class="friends-more">
-                    <div class="friends-more-container">
-                        <a href="/Site_war/welcome" class="more-text">View More</a>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="section_main-tape">
@@ -119,26 +123,68 @@
                     </div>
                 </form>
             </div>
-            <div id="list-container" class="main-tape-list">
-<#--                <#list posts as post>-->
-<#--                    <div class="post-container">-->
-<#--                        <div class="post-avatar" style='background-image: url("data:image/jpeg;base64,${post.client.avatar}"); background-size: cover'></div>-->
-<#--                        <div class="post-content">-->
-<#--                            <div class="post-content-user">-->
-<#--                                <div class="post-name">${post.client.name}</div>-->
-<#--                                <div class="post-username">@${post.client.userName}</div>-->
-<#--                            </div>-->
-<#--                            <div class="post-time">-->
-<#--                                <div class="date">${post.date}</div>-->
-<#--                                <div class="time">${post.time?string("HH:mm")}</div>-->
-<#--                            </div>-->
-<#--                            <div class="post-message">${post.message}</div>-->
-<#--                        </div>-->
-<#--                    </div>-->
-<#--                </#list>-->
+            <div id="list-container" class="main-tape-list"></div>
+        </div>
+        <div class="section_main-panel">
+            <div class="section_main-panel-popular">
+                <div class="panel-popular-header">Most popular post</div>
+                <div class="panel-popular-content">
+                    <#list posts as post>
+                        <div class="popular-post-container">
+                            <div class="popular-post-avatar" style='background-image: url("data:image/jpeg;base64,${post.client.avatar}"); background-size: cover'></div>
+                            <div class="popular-post-content">
+                                <div class="popular-post-content-user">
+                                    <div class="popular-post-name">${post.client.name}</div>
+                                    <div class="popular-post-username">@${post.client.userName}</div>
+                                </div>
+                                <div class="popular-post-time">
+                                    <div class="popular-date">${post.date}</div>
+                                    <div class="popular-time">${post.time?string("HH:mm")}</div>
+                                </div>
+                                <div class="popular-post-message">${post.message}</div>
+                                <div class="popular-like-dislike-container">
+                                    <div class="popular-like-container">
+                                        <button class="popular-button-like">
+                                            <img class="popular-img-like" src="/Site_war/resources/img/like.png" alt="">
+                                        </button>
+                                        <input type="text" readonly class="popular-count-like" value="${post.likes}">
+                                    </div>
+                                    <div class="popular-dislike-container">
+                                        <button class="popular-button-dislike">
+                                            <img class="popular-img-dislike" src="/Site_war/resources/img/dislike.png" alt="">
+                                        </button>
+                                        <input type="text" readonly class="popular-count-dislike" value="${post.dislikes}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </#list>
+                </div>
+            </div>
+            <div class="section_main-panel-follows">
+                <div class="panel-follows-header">Followers</div>
+                <div class="panel-follows-content">
+                    <#list followers as follower>
+                        <form method="post" action="/Site_war/my_profile">
+                            <div class="followers-container">
+                                <div class="followers">
+                                    <div class="followers-avatar" style='background-image: url("data:image/jpeg;base64,${follower.client_id.avatar}"); background-size: cover'>
+                                    </div>
+                                    <div class="followers-info">
+                                        <div class="followers-name">${follower.client_id.name}</div>
+                                        <div class="followers-username">@${follower.client_id.userName}</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="friendid" value="${follower.client_id.id}">
+                                <button class="submit-input" type="submit" value="profile">
+                                    <img class="view" src="/Site_war/resources/img/view.png" alt="">
+                                </button>
+                            </div>
+                        </form>
+                    </#list>
+                </div>
             </div>
         </div>
-        <div class="section_main-panel"></div>
-    </div>
+    </main>
 </body>
 </html>

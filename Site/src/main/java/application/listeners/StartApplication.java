@@ -20,7 +20,7 @@ public class StartApplication implements ServletContextListener {
 //        }
 //        System.out.println("start app ");
         try {
-          DBConnection.getConnection();
+            DBConnection.getInstance().getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -28,6 +28,6 @@ public class StartApplication implements ServletContextListener {
 
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("stop app ");
-        DBConnection.destroyAllConnection();
+        DBConnection.getInstance().destroyConnection();
     }
 }
