@@ -27,12 +27,18 @@
                 </div>
             </div>
         </div>
+        <div class="container-support">
+            <a class="support-link" href="/Site_war/support_list">
+                <div class="support-text">${admin}</div>
+            </a>
+        </div>
         <div class="container-menu">
             <div class="menu">
                 <div class="dropdown " onclick="toggleDropdown()">
                     <button class="dropbtn" id="dropdownBtn">Home</button>
                     <div class="dropdown-content" id="dropdown-list">
                         <a href="/Site_war/my_profile">Profile</a>
+                        <a href="/Site_war/support">Support</a>
                         <a href="/Site_war/login">Log out</a>
                     </div>
                 </div>

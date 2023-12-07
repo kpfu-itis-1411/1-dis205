@@ -83,8 +83,7 @@ public class InformationRepository {
             Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into client_information ( client_id, status, birthdate, about_me) " +
-                            "values ( ? , ? , ? , ? ) "
+                    "insert into client_information ( client_id, status, birthdate, about_me) values ( ? , ? , ? , ? ) returning id"
             );
 
             statement.setLong(1, client.getId());
@@ -94,17 +93,22 @@ public class InformationRepository {
 
             ResultSet resultSet = statement.executeQuery();
 
+            Information information = new Information();
+            information.setStatus(status);
+            information.setClient_id(client);
+            information.setBirthday(birthdate);
+            information.setAbout_me(about_me);
             if (resultSet.next()) {
-                client.setId(resultSet.getLong("id"));
+                information.setId(resultSet.getLong("id"));
             }
 
-            resultSet.close();
             statement.close();
             DBConnection.getInstance().releaseConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     public void update(Client client, String status, String birthdate, String about_me) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();

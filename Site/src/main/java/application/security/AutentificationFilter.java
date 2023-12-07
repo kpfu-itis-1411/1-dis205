@@ -24,6 +24,7 @@ public class AutentificationFilter implements Filter {
             || httpServletRequest.getServletPath().startsWith("/resources")
                 || httpServletRequest.getServletPath().equals("/login")
                 || httpServletRequest.getServletPath().equals("/welcome")
+                || httpServletRequest.getServletPath().equals("/support")
         ) {
             filterChain.doFilter(request, response);
         } else {

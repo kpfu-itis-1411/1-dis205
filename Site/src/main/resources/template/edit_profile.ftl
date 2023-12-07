@@ -8,6 +8,7 @@
     <link rel="stylesheet" href='/Site_war/resources/css/global.css'>
     <link rel="stylesheet" href='/Site_war/resources/css/edit_profile.css'>
     <script src='/Site_war/resources/js/validate_form.js'></script>
+    <script src='/Site_war/resources/js/menu.js'></script>
     <title>Document</title>
 </head>
 <body>
@@ -22,15 +23,22 @@
             <a href="/Site_war/welcome" class="navbar-text-link">THE WORD OUT</a>
         </div>
         <div class="container-menu">
-            <div class="menu">
-                <div class="dropdown " onclick="toggleDropdown()">
-                    <button class="dropbtn" id="dropdownBtn">Profile</button>
-                    <div class="dropdown-content" id="dropdown-list">
-                        <a href="/Site_war/index">Home</a>
-                        <a href="/Site_war/login">Log out</a>
-                    </div>
+            <button id="openButton" class="menu-btn">
+                <img class="menu-img" src="/Site_war/resources/img/menu.png" alt="">
+            </button>
+
+            <div id="sidebar" class="menu">
+                <button id="closeButton" class="menu-btn-open">
+                    <img class="cansel-img" src="/Site_war/resources/img/cansel.png" alt="">
+                </button>
+                <div class="menu-links">
+                    <a href="/Site_war/index"><div class="menu-item">Home</div></a>
+                    <a href="/Site_war/my_profile"><div class="menu-item">Profile</div></a>
+                    <a href="/Site_war/support"><div class="menu-item">Support</div></a>
+                    <a href="/Site_war/login"><div class="menu-item"> Log out</div></a>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

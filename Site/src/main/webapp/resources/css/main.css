@@ -19,7 +19,7 @@ body{
 .section-navbar{
     padding-top: 15px;
     margin-left: 20px;
-    margin-right: 675px;
+    margin-right: 575px;
     height: 60px;
     width: var(--wight-left);
 }
@@ -709,4 +709,18 @@ body{
 .followers-btn{
     border: 0;
     background-color: var(--color-gray-2);
+}
+
+.support-link{
+    text-decoration: none;
+    color: white;
+}
+.container-support{
+    margin-top: 15px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+.support-text{
+    padding-top: 15px;
 }

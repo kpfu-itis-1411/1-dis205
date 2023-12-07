@@ -6,6 +6,7 @@ create sequence posts_seq;
 create sequence client_information_seq;
 create sequence avatars_seq;
 create sequence activity_seq;
+create sequence supports_seq;
 
 create table client (
     id bigint  primary key default nextval('client_seq'),
@@ -53,6 +54,13 @@ CREATE TABLE posts (
     time timestamp,
     message varchar(1000),
     constraint client_fk foreign key (client_id) references client(id)
+);
+
+create table supports (
+    id bigint  primary key default nextval('supports_seq'),
+    title varchar (100),
+    email varchar (100),
+    message varchar (1000)
 );
 -- create sequence activity_seq;
 -- CREATE TABLE activity (

@@ -235,3 +235,13 @@ function sendSearch(){
         input2.value = input1.value
     })
 }
+
+function getInputValue() {
+    fetch('/Semestrovaya_war/masterServlet', {
+        method: 'POST',
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+        })
+}

@@ -34,6 +34,11 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("likes", postService.countLikes(client));
         request.setAttribute("posts", postService.findMostPopularPost());
         request.setAttribute("followers", subscriptionsService.findFollowersById(clientId));
+        if (client.getUserName().equals("admin")){
+            request.setAttribute("admin", "Appeals");
+        } else {
+            request.setAttribute("admin", "");
+        }
         request.getRequestDispatcher("main.ftl").forward(request, response);
     }
 }

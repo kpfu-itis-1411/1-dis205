@@ -102,7 +102,7 @@
     </div>
     <div class="footer">
         <div class="footer_name">© 2023 «THE WORD OUT»</div>
-        <div class="footer_link"><a class="footer_item-link footer_item" href="/Site_war/login">SUPPORT</a></div>
+        <div class="footer_link"><a class="footer_item-link footer_item" href="/Site_war/support">SUPPORT</a></div>
         <div class="footer_language footer_item">
             <select class="footer_select-language" name="language" id="">
                 <option value="russian">Русский</option>

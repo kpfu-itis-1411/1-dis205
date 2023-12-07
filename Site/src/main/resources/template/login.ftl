@@ -6,7 +6,6 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href='/Site_war/resources/css/global.css'>
     <link rel="stylesheet" href='/Site_war/resources/css/login.css'>
-    <script src='/Site_war/resources/js/login.js'></script>
 </head>
 <body>
     <div class="navbar">
@@ -59,7 +58,7 @@
                     <div class="container-additional-small">Having problems?</div>
                     <div class="container-additional-contact">
                         Contact us →
-                        <a class="container-link" href="/Site_war/reg_page">help</a>
+                        <a class="container-link" href="/Site_war/support">help</a>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", followBtn)
+document.addEventListener("DOMContentLoaded", () => {
+    followBtn()
+})
 function followBtn(){
     const btn = document.querySelector(".edit-profile-btn")
     const input = document.getElementById("profile-edit-hidden")
@@ -11,3 +13,5 @@ function followBtn(){
         }
     })
 }
+
+

@@ -183,49 +183,63 @@ legend{
     padding-top: 10px;
     margin: 10px;
 }
-.dropdown{
-    width: 100px;
+.menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: #f2f2f2;
+    transition: right 0.3s ease;
 }
-.dropdown-content {
-    display: none;
+
+#sidebar.open {
+    right: 0;
+}
+
+.menu-btn {
     position: absolute;
-    width: 100px;
-    z-index: 1;
+    top: 15px;
+    right: 50px;
+    background-color: var(--color-gray);
+    border: 0;
 }
 
-.show {
-    display: block;
+.menu-btn-open{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--color-gray);
+    border: 0;
 }
-
-.dropbtn {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 20px;
-    background-color: var(--color-white);
-    color: black;
-    width: 100px;
+.menu-img{
+    width: 30px;
+}
+.cansel-img{
+    width: 40px;
+}
+.menu{
+    background-color: var(--color-gray);
+    border-left: var(--border-gray-1);
+}
+.menu-item{
+    width: 250px;
     height: 30px;
-    padding: 5px;
-    font-size: 20px;
-    border: none;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 5px;
-    border-radius: 20px;
-    width: 90px;
-    height: 20px;
-    text-decoration: none;
-    background-color: white;
-    display: block;
-    margin-bottom: 15px;
+    color: white;
     text-align: center;
-    font-size: 20px;
+    padding-top: 11px;
+    font-size: 16px;
+    border: var(--border-gray);
+    border-radius: 10px;
+    margin: 0 auto 10px;
 }
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
+.menu-links{
+    width: 300px;
+    margin-top: 70px;
+}
+.menu-links a{
+    text-decoration: none;
+    color: white;
 }
 .edit_name{
     text-align: center;
@@ -288,4 +302,7 @@ legend{
     background-color: var(--color-gray-2);
     border: var(--border-gray-1);
     color: white;
+}
+.menu-item:hover{
+    background-color: #151a21;
 }
