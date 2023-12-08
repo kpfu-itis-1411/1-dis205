@@ -9,7 +9,7 @@
     <link rel="stylesheet" href='/Site_war/resources/css/support_list.css'>
     <script src='/Site_war/resources/js/menu.js'></script>
 
-    <title>Document</title>
+    <title>Support</title>
 </head>
 <body>
 <div class="navbar">
@@ -32,8 +32,8 @@
                     <img class="cansel-img" src="/Site_war/resources/img/cansel.png" alt="">
                 </button>
                 <div class="menu-links">
-                    <a href="/Site_war/index"><div class="menu-item">Home</div></a>
-                    <a href="/Site_war/my_profile"><div class="menu-item">Profile</div></a>
+                    <a href="/Site_war/home"><div class="menu-item">Home</div></a>
+                    <a href="/Site_war/profile"><div class="menu-item">Profile</div></a>
                     <a href="/Site_war/support"><div class="menu-item">Support</div></a>
                     <a href="/Site_war/login"><div class="menu-item"> Log out</div></a>
                 </div>
@@ -41,12 +41,19 @@
         </div>
     </div>
 
-    <div>
+    <div class="container-support-list">
+        <div class="container-support-header">List</div>
+        <div class="container-support">
         <#list supports as support>
-            <div>${support.title}</div>
-            <div>${support.email}</div>
-            <div>${support.message}</div>
+            <div class="container-support-message">
+                <div class="support-title">${support.title}</div>
+                <div class="support-email">${support.email}</div>
+                <div class="support-message">
+                    <div class="message-text">${support.message}</div>
+                </div>
+            </div>
         </#list>
+        </div>
     </div>
 </div>
 </body>

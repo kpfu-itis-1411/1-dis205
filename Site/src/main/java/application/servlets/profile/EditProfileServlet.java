@@ -50,7 +50,7 @@ public class EditProfileServlet extends HttpServlet {
         session.setAttribute("client_id", client.getId());
         session.setAttribute("client_name", client.getName());
         session.setAttribute("client_username", client.getUserName());
-        response.sendRedirect("/Site_war/my_profile");
+        response.sendRedirect("/Site_war/profile");
     }
 
     @Override

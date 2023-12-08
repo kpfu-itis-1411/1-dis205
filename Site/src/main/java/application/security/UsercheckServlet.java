@@ -32,7 +32,7 @@ public class UsercheckServlet extends HttpServlet {
 
             session.setAttribute("client", client);
 
-            response.sendRedirect("/Site_war/index");
+            response.sendRedirect("/Site_war/home");
 
         } else {
             request.setAttribute("message", "Неверный пароль или логин");

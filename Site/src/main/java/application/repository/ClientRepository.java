@@ -133,7 +133,12 @@ public class ClientRepository {
             }
             InformationService informationService = new InformationService();
             AvatarService imageService = new AvatarService();
-            informationService.save(client, "no status", "not specified", "not specified");
+            Information information = new Information();
+            information.setClient_id(client);
+            information.setStatus("no status");
+            information.setBirthday("not specified");
+            information.setAbout_me("not specified");
+            informationService.save(information);
             imageService.saveAvatarImage(client, imageService.getImageById(1L));
             resultSet.close();
             statement.close();

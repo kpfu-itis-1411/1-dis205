@@ -24,12 +24,12 @@ public class RegistrationServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String password_repeat = request.getParameter("password_repeat");
         Client client = new Client();
         client.setName(name);
         client.setPhoneNumber(phone);
         client.setPassword(password);
         client.setUserName(username);
+        System.out.println(password);
         if (service.findByUserName(client.getUserName()) == null) {
             client = service.save(client);
             HttpSession session = request.getSession();
@@ -37,7 +37,7 @@ public class RegistrationServlet extends HttpServlet {
             session.setAttribute("client_id", client.getId());
             session.setAttribute("client_username", client.getUserName());
             session.setAttribute("client", client);
-            response.sendRedirect("/Site_war/index");
+            response.sendRedirect("/Site_war/home");
         } else {
             request.setAttribute("message", "Пользователь с таким username уже существует");
             request.getRequestDispatcher("reg_page.ftl").forward(request, response);

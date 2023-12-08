@@ -9,6 +9,7 @@
     <link rel="stylesheet" href='/Site_war/resources/css/profile.css'>
     <script src='/Site_war/resources/js/profile.js'></script>
     <script src='/Site_war/resources/js/menu.js'></script>
+    <title>Profile</title>
 
 </head>
 <body>
@@ -32,8 +33,8 @@
                         <img class="cansel-img" src="/Site_war/resources/img/cansel.png" alt="">
                     </button>
                     <div class="menu-links">
-                            <a href="/Site_war/index"><div class="menu-item">Home</div></a>
-                            <a href="/Site_war/my_profile"><div class="menu-item">Profile</div></a>
+                            <a href="/Site_war/home"><div class="menu-item">Home</div></a>
+                            <a href="/Site_war/profile"><div class="menu-item">Profile</div></a>
                             <a href="/Site_war/support"><div class="menu-item">Support</div></a>
                             <a href="/Site_war/login"><div class="menu-item"> Log out</div></a>
                     </div>

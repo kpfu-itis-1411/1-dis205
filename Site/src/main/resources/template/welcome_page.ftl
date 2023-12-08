@@ -8,7 +8,7 @@
     <link rel="stylesheet" href='/Site_war/resources/css/global.css'>
     <link rel="stylesheet" href='/Site_war/resources/css/welcome.css'>
     <script src='/Site_war/resources/js/welcome_page.js'></script>
-    <title>THEWORDOUT</title>
+    <title>THE WORD OUT</title>
 </head>
 <body>
 <div class="navbar">
@@ -109,7 +109,7 @@
                 <option value="english" selected>English</option>
             </select>
         </div>
-        <div class="footer_link"><a class="footer_item-link footer_item" href="/Site_war/login">ABOUT US</a></div>
+        <div class="footer_link"><a class="footer_item-link footer_item" href="/Site_war/about">ABOUT US</a></div>
     </div>
 </body>
 </html>

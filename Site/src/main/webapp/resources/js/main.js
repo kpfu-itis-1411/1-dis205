@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     start()
     sendSearch()
 })
+let flag
 function start() {
     fetch('/Site_war/session', {
         method: 'GET',
@@ -12,6 +13,7 @@ function start() {
         .then((response) => response.json())
         .then((data) => {
             connect(data)
+            flag = data === "admin";
         })
         .catch((err) => console.log(err));
 }
@@ -143,6 +145,7 @@ function likeDislike(post){
     div.classList.add("like-dislike-container")
     div.appendChild(likeButton(post))
     div.appendChild(dislikeButton(post))
+    div.appendChild(deletePost(post))
     return div;
 }
 function usernameUserDateViewContainer(post){
@@ -212,7 +215,7 @@ function viewProfile(post){
     const btnSend = document.createElement("button")
     const img = document.createElement("img")
     form.method = "post"
-    form.action = "/Site_war/my_profile"
+    form.action = "/Site_war/profile"
     inputHidden.type = "hidden"
     inputHidden.value = `${post.client.id}`
     inputHidden.name = "friendid"
@@ -235,13 +238,26 @@ function sendSearch(){
         input2.value = input1.value
     })
 }
-
-function getInputValue() {
-    fetch('/Semestrovaya_war/masterServlet', {
-        method: 'POST',
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-        })
+function deletePost(post){
+    const form = document.createElement("form")
+    const inputHidden = document.createElement("input")
+    const btnSend = document.createElement("input")
+    form.method = "post"
+    form.action = "/Site_war/delete_post"
+    inputHidden.type = "hidden"
+    inputHidden.value = `${post.id}`
+    inputHidden.name = "post"
+    inputHidden.name = "delete"
+    btnSend.type = "submit"
+    if (flag){
+        btnSend.style.display = "block"
+    } else {
+        btnSend.style.display = "none"
+    }
+    btnSend.value = "Delete"
+    btnSend.classList.add("delete-btn")
+    form.appendChild(inputHidden)
+    form.appendChild(btnSend)
+    return form
 }
+

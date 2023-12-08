@@ -78,7 +78,7 @@ public class InformationRepository {
             throw new RuntimeException(e);
         }
     }
-    public void save(Client client, String status, String birthdate, String about_me) {
+    public void save(Information information) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
@@ -86,18 +86,13 @@ public class InformationRepository {
                     "insert into client_information ( client_id, status, birthdate, about_me) values ( ? , ? , ? , ? ) returning id"
             );
 
-            statement.setLong(1, client.getId());
-            statement.setString(2, status);
-            statement.setString(3, birthdate );
-            statement.setString(4, about_me);
+            statement.setLong(1, information.getClient_id().getId());
+            statement.setString(2, information.getStatus());
+            statement.setString(3, information.getBirthday() );
+            statement.setString(4, information.getAbout_me());
 
             ResultSet resultSet = statement.executeQuery();
-
-            Information information = new Information();
-            information.setStatus(status);
-            information.setClient_id(client);
-            information.setBirthday(birthdate);
-            information.setAbout_me(about_me);
+            
             if (resultSet.next()) {
                 information.setId(resultSet.getLong("id"));
             }

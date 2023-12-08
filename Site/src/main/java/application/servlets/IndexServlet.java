@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-@WebServlet("/index")
+@WebServlet("/home")
 public class IndexServlet extends HttpServlet {
     private SubscriptionsService subscriptionsService = new SubscriptionsService();
     private ClientService clientService = new ClientService();

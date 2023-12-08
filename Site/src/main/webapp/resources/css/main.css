@@ -1,6 +1,5 @@
 :root{
     --wight-left: 300px;
-    --border-radius-15: 15px;
     --border-1-gray-light: 1px solid #89989f;
     --display: none;
     --wight-right: 335px;
@@ -441,6 +440,7 @@ body{
     background-color: var(--color-gray-2);
 }
 .dislike-container{
+    margin-right: 475px;
     display: flex;
     width: 50px;
 }
@@ -723,4 +723,11 @@ body{
 }
 .support-text{
     padding-top: 15px;
+}
+.delete-btn{
+    padding: 5px;
+    color: white;
+    border: var(--border-gray-1);
+    border-radius: 10px;
+    background-color: var(--color-gray-2);
 }

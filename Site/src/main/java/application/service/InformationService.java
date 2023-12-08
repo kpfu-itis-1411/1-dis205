@@ -21,8 +21,8 @@ public class InformationService {
     public Information findByClient(Client client) {
         return repository.findByClient(client);
     }
-    public void save(Client client, String status,String birthdate, String about_me) {
-        repository.save(client, status, birthdate, about_me);
+    public void save(Information information) {
+        repository.save(information);
     }
     public void update(Client client, String status,String birthdate, String about_me) {
         repository.update(client, status, birthdate, about_me);

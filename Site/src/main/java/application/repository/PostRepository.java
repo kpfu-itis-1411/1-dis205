@@ -2,6 +2,7 @@ package application.repository;
 
 import application.model.Client;
 import application.model.Post;
+import application.model.Subscriptions;
 import application.service.ClientService;
 
 import java.sql.Connection;
@@ -273,6 +274,22 @@ public class PostRepository {
             statement.close();
             DBConnection.getInstance().releaseConnection(connection);
             return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void delete(Long id) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            PreparedStatement deleteStatement = connection.prepareStatement(
+                    "delete from posts where id = ?"
+            );
+            deleteStatement.setLong(1, id);
+            deleteStatement.executeUpdate();
+            deleteStatement.close();
+
+            DBConnection.getInstance().releaseConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

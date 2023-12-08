@@ -14,7 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/my_profile")
+@WebServlet("/profile")
 @MultipartConfig
 public class ProfileServlet extends HttpServlet {
     private ClientService clientService = new ClientService();
@@ -34,7 +34,7 @@ public class ProfileServlet extends HttpServlet {
         }
         if (username != null){
             if (clientService.findByUserName(username) == null){
-                response.sendRedirect("/Site_war/index");
+                response.sendRedirect("/Site_war/home");
                 return;
             }
         }
@@ -51,7 +51,7 @@ public class ProfileServlet extends HttpServlet {
             } else {
                 request.setAttribute("edit", "Follow");
             }
-            request.setAttribute("editlink", "/index");
+            request.setAttribute("editlink", "/home");
         } else {
             request.setAttribute("editlink", "/edit");
             request.setAttribute("edit", "Edit");

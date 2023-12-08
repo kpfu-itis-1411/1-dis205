@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Lab 10</title>
+    <title>Support</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href='/Site_war/resources/css/global.css'>
     <link rel="stylesheet" href='/Site_war/resources/css/support_send.css'>

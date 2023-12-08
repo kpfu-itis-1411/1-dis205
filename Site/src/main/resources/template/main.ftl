@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>THE WORD OUT</title>
     <link rel="stylesheet" href='/Site_war/resources/css/global.css'>
     <link rel="stylesheet" href='/Site_war/resources/css/main.css'>
     <script src='/Site_war/resources/js/main.js'></script>
@@ -37,7 +37,7 @@
                 <div class="dropdown " onclick="toggleDropdown()">
                     <button class="dropbtn" id="dropdownBtn">Home</button>
                     <div class="dropdown-content" id="dropdown-list">
-                        <a href="/Site_war/my_profile">Profile</a>
+                        <a href="/Site_war/profile">Profile</a>
                         <a href="/Site_war/support">Support</a>
                         <a href="/Site_war/login">Log out</a>
                     </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="container-search">
                 <input class="container-search-input" type="text" id="search-user" placeholder="Search users">
-                <form method="post" action="/Site_war/my_profile">
+                <form method="post" action="/Site_war/profile">
                     <input type="hidden" name="send-user-search" id="search-user-hidden">
                     <button type="submit" class="search-btn">
                         <img class="search-img" src="/Site_war/resources/img/search.png" alt="">
@@ -82,7 +82,7 @@
                 <div class="link">
                     <div class="container-link">
                         <form action="">
-                            <a class="link-profile" href="/Site_war/my_profile">My Profile</a>
+                            <a class="link-profile" href="/Site_war/profile">My Profile</a>
                         </form>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="friends-list">
                     <div class="list-item">
                             <#list friends as friend>
-                                    <form method="post" action="/Site_war/my_profile">
+                                    <form method="post" action="/Site_war/profile">
                                         <div class="friend-container">
                                             <div class="friend">
                                                 <div class="friend-avatar" style='background-image: url("data:image/jpeg;base64,${friend.friend_id.avatar}"); background-size: cover'>
@@ -171,7 +171,7 @@
                 <div class="panel-follows-header">Followers</div>
                 <div class="panel-follows-content">
                     <#list followers as follower>
-                        <form method="post" action="/Site_war/my_profile">
+                        <form method="post" action="/Site_war/profile">
                             <div class="followers-container">
                                 <div class="followers">
                                     <div class="followers-avatar" style='background-image: url("data:image/jpeg;base64,${follower.client_id.avatar}"); background-size: cover'>

@@ -37,7 +37,11 @@ public class FollowServlet extends HttpServlet {
         Subscriptions subscriptions = new Subscriptions();
         subscriptions.setClient_id(client);
         subscriptions.setFriend_id(friend);
-        subscriptionsService.followClientOnFriend(subscriptions);
+        if (subscriptionsService.isFollowing(client.getId(), friend.getId())){
+            subscriptionsService.unfollowClientFromFriend(subscriptions);
+        } else {
+            subscriptionsService.followClientOnFriend(subscriptions);
+        }
     }
 
 }

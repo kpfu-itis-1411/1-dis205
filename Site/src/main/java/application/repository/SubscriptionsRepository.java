@@ -202,4 +202,22 @@ public class SubscriptionsRepository {
             throw new RuntimeException(e);
         }
     }
+    public void unfollowClientFromFriend(Subscriptions subscriptions) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            PreparedStatement deleteStatement = connection.prepareStatement(
+                    "delete from subscriptions where client_id = ? and friend_id = ?"
+            );
+            deleteStatement.setLong(1, subscriptions.getClient_id().getId());
+            deleteStatement.setLong(2, subscriptions.getFriend_id().getId());
+            deleteStatement.executeUpdate();
+            deleteStatement.close();
+
+            DBConnection.getInstance().releaseConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

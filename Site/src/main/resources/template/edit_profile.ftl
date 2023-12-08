@@ -32,8 +32,8 @@
                     <img class="cansel-img" src="/Site_war/resources/img/cansel.png" alt="">
                 </button>
                 <div class="menu-links">
-                    <a href="/Site_war/index"><div class="menu-item">Home</div></a>
-                    <a href="/Site_war/my_profile"><div class="menu-item">Profile</div></a>
+                    <a href="/Site_war/home"><div class="menu-item">Home</div></a>
+                    <a href="/Site_war/profile"><div class="menu-item">Profile</div></a>
                     <a href="/Site_war/support"><div class="menu-item">Support</div></a>
                     <a href="/Site_war/login"><div class="menu-item"> Log out</div></a>
                 </div>

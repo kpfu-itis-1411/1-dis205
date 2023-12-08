@@ -24,4 +24,5 @@ public class PostService {
     public Long findLastPostId(){ return repository.findLastPostId();}
     public List<Post> getAfterPostId(Long postId) { return repository.getAfterPostId(postId);}
     public List<Post> findMostPopularPost() { return repository.findMostPopularPost();}
+    public void delete(Long id) { repository.delete(id);}
 }

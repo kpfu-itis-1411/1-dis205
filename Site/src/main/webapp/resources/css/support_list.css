@@ -13,6 +13,7 @@ body{
     box-shadow: var(--box-shadow);
 }
 .navbar-container{
+    height: 60px;
     margin-left: 60px;
     display: flex;
 }
@@ -90,4 +91,53 @@ body{
 }
 .menu-item:hover{
     background-color: #151a21;
+}
+
+.container-support-list{
+    height: 700px;
+    overflow: auto;
+    width: 50%;
+    margin: 0 auto;
+    background-color: var(--color-gray-2);
+    border: var(--border-radius-15);
+}
+.container-support-message{
+    margin: 0 auto 10px;
+    width: 90%;
+    color: white;
+    border: var(--border-gray-1);
+    background-color: var(--color-gray-2);
+    border-radius: var(--border-radius-15);
+}
+.support-title{
+    padding-top: 10px;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto 5px;
+}
+.support-email{
+    text-align: center;
+    width: 400px;
+    margin: 0 auto 5px;
+}
+.support-message-header{
+    text-align: center;
+    width: 200px;
+    margin: 0 auto 5px;
+}
+.support-message{
+    background-color: var(--color-gray-3);
+    border-radius: var(--border-radius-15);
+    width: 400px;
+    margin: 0 auto 10px;
+}
+.container-support-header{
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+.message-text{
+    padding: 10px;
 }
