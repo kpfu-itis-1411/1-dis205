@@ -33,7 +33,7 @@ public class ProfileServlet extends HttpServlet {
             username = request.getParameter("send-user-search");
         }
         if (username != null){
-            if (clientService.findByUserName(username) == null){
+            if (clientService.findByUserName(username) == null || username.equals("admin")){
                 response.sendRedirect("/Site_war/home");
                 return;
             }
