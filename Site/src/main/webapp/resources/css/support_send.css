@@ -41,92 +41,24 @@ body{
 }
 .container-main{
     width: 300px;
-    height: 355px;
+    height: 75px;
     border-radius:10px;
     background-color: var(--color-gray);
     border: var(--border-gray);
     box-shadow: var(--box-shadow);
+    margin-bottom: 10px;
 }
 .container-main-small{
     padding-top: 20px;
-    margin: 0 auto 90px;
+    margin: 0 auto 20px;
     color:var(--color-white);
     width: 250px;
-    height: 255px;
+    height: 75px;
 }
-.title-support-container{
-    margin-bottom: 20px;
-}
-.message-support-container{
-    margin-bottom: 10px;
-}
-
-.input{
-    border: var(--border-gray);
-    width: 250px;
-    height: 30px;
-    border-radius: 5px;
-    background-color: var(--color-dark) ;
-    color: white;
-}
-.textarea-support{
-    border: var(--border-gray);
-    width: 250px;
-    height: 100px;
-    border-radius: 5px;
-    background-color: var(--color-dark) ;
-    color: white;
-    resize: none;
-    margin-bottom: 5px;
-}
-.name{
-    font-size: 15px;
-    margin-bottom: 5px;
+.support_send-message{
+    text-align: center;
+    font-size: 16px;
     font-family: var(--family-heiti);
-}
-.container-message{
-    color: red;
-    text-align: center;
-    margin-bottom: 10px;
-}
-.sing-in-btn{
-    text-align: center;
-}
-.btn-sing-in{
-    width: 255px;
-    height: 30px;
-    background-color: var(--color-green);
-    border-radius: 5px;
-    color: white;
-    border: var(--border-gray-1);
-}
-.container-additional{
-    text-align: center;
-    border-radius: 10px;
-    border: var(--border-gray);
-    width: 300px;
-    height: 30px;
-    margin-bottom: 10px;
-    box-shadow: var(--box-shadow);
-}
-.container-additional-small{
-    padding-top: 10px;
-    color: var(--color-white);
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-.container-link{
-    color: var(--color-blue);
-    text-decoration: none;
-    font-size: 14px;
-}
-.container-additional-contact{
-    color: var(--color-white);
-    font-size: 14px;
-}
-.remember{
-    font-size: 14px;
-    margin-bottom: 10px;
 }
 .container-additional{
     text-align: center;

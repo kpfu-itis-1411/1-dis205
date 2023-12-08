@@ -52,9 +52,13 @@
                     </div>
                 </form>
             </div>
-<#--            <div class="container-additional">-->
-<#--                <a class="container-link" href="/Site_war/login">Sing in</a>-->
-<#--            </div>-->
+            <a class="link-before-servlet" href="/Site_war/${link}">
+                <div class="container-additional">
+                    <div class="container-link">
+                        <div class="link">Back</div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
