@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Отзывы автомойки</title>
+    <style>
+        /* Стили CSS для отзывов */
+        .comment-block {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .comment-element {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .comment-author {
+            font-weight: bold;
+        }
+        .comment-date {
+            color: #888;
+            font-size: 0.8em;
+        }
+        .comment-content {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align: center; margin-top: 30px;">Отзывы об автомойке</h2>
+<ul class="comment-block">
+    <!-- Вставка отзывов из сервлета -->
+    <!-- Пример использования Java в сервлете для получения данных из базы данных -->
+<!--    <%&#45;&#45; Здесь вставьте ваши Java-коды для получения данных &#45;&#45;%>-->
+<!--    <%&#45;&#45; Итерация по полученным данным и вставка их в HTML &#45;&#45;%>-->
+<!--    <%-->
+<!--    // Получение данных из базы данных-->
+    List<Review> reviews = reviewService.getAllReviews();
+
+<!--    // Итерация по отзывам и генерация HTML-->
+    for (Review review : reviews) {
+    %>
+    <li class="comment-element">
+        <div class="comment-author"><%= review.getAuthor() %></div>
+        <div class="comment-date"><%= review.getDate() %></div>
+        <div class="comment-content"><%= review.getContent() %></div>
+    </li>
+    <%
+    }
+
+<!--    // Если отзывов нет-->
+    if (reviews.isEmpty()) {
+    %>
+    <li class="comment-element">
+        <div class="comment-content">Пока нет отзывов.</div>
+    </li>
+    <%
+    }
+    %>
+    <!-- Конец вставки отзывов из сервлета -->
+</ul>
+</body>
+</html>
