@@ -14,12 +14,6 @@ import java.sql.SQLException;
 public class StartApplication implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent sce) {
-//        AvatarService imageService = new AvatarService();
-//        try {
-//            imageService.saveAvatarUrl(1L, "/Users/danil/IdeaProjects/Semester_Work_1/Site/src/main/webapp/resources/img/avatars/default_avatar.jpg" );
-//        } catch (SQLException | IOException e) {
-//            throw new RuntimeException(e);
-//        }
         System.out.println("start app ");
         try {
             DBConnection.getInstance().getConnection();
