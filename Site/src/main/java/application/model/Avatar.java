@@ -17,4 +17,28 @@ public class Avatar {
         this.client_id = client_id;
         this.data = data;
     }
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Avatar avatar = (Avatar) o;
+
+        if (!id.equals(avatar.id)) return false;
+        if (!client_id.equals(avatar.client_id)) return false;
+        return data.equals(avatar.data);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + client_id.hashCode();
+        result = 31 * result + data.hashCode();
+        return result;
+    }
+
 }

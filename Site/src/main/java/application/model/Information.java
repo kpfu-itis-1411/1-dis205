@@ -22,4 +22,27 @@ public class Information {
         this.birthday = birthday;
         this.about_me = about_me;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Information information = (Information) o;
+
+        if (!id.equals(information.id)) return false;
+        if (!client_id.equals(information.client_id)) return false;
+        if (!status.equals(information.status)) return false;
+        if (!birthday.equals(information.birthday)) return false;
+        return about_me.equals(information.about_me);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + client_id.hashCode();
+        result = 31 * result + status.hashCode();
+        result = 31 * result + birthday.hashCode();
+        result = 31 * result + about_me.hashCode();
+        return result;
+    }
 }
