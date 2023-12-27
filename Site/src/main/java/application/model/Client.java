@@ -46,7 +46,7 @@ public class Client {
         if (!avatar.equals(client.avatar)) return false;
         if (!status.equals(client.status)) return false;
         if (!birthday.equals(client.birthday)) return false;
-        return Objects.equals(about, client.about);
+        return about.equals(client.about);
     }
 
     @Override
