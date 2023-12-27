@@ -43,8 +43,8 @@ public class Client {
         if (!userName.equals(client.userName)) return false;
         if (!password.equals(client.password)) return false;
         if (!phoneNumber.equals(client.phoneNumber)) return false;
-        if (!Objects.equals(avatar, client.avatar)) return false;
-        if (!Objects.equals(status, client.status)) return false;
+        if (!avatar.equals(client.avatar)) return false;
+        if (!status.equals(client.status)) return false;
         if (!birthday.equals(client.birthday)) return false;
         return Objects.equals(about, client.about);
     }
