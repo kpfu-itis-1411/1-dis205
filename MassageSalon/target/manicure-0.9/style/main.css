@@ -1,0 +1,165 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-links li a:hover {
+    color: #aaa;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profile {
+    display: flex;
+}
+
+.profile-picture {
+    margin-right: 20px;
+}
+
+.profile-picture img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.profile-details form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details label {
+    margin-bottom: 5px;
+}
+
+.profile-details input,
+.profile-details select {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e65c00;
+}
+input:required:invalid {
+    border:1px solid red;
+}
+input:valid {
+    border:1px solid green;
+}
+
+.containerHome {
+    display: flex;
+}
+
+.item {
+    flex: 1;
+    padding: 20px;
+}
+ .home img{
+    max-width: 100%;
+    height: auto;
+}
+
+.contact-info {
+    text-align: center;
+    padding: 20px;
+}
+
+.contact-info h2 {
+    margin-bottom: 10px;
+}
+.contact-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.contact-form img {
+    width: 50%;
+}
+
+.formContact {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.form h2 {
+    margin-bottom: 10px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    margin-bottom: 10px;
+}
+
+button{
+    padding: 10px;
+}
+
+.containerContacts{
+    display: flex;
+}
+
+.block {
+    width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.contacts img {
+    width: 30%;
+    float: left;
+}
+
+.text {
+    width: 70%;
+    float: right;
+}
