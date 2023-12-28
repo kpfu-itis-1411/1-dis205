@@ -56,10 +56,10 @@ public class Client {
         result = 31 * result + userName.hashCode();
         result = 31 * result + password.hashCode();
         result = 31 * result + phoneNumber.hashCode();
-        result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + avatar.hashCode();
+        result = 31 * result + status.hashCode();
         result = 31 * result + birthday.hashCode();
-        result = 31 * result + (about != null ? about.hashCode() : 0);
+        result = 31 * result + about.hashCode();
         return result;
     }
 }
